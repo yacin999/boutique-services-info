@@ -255,4 +255,32 @@
     });
   });
 
+
+
+  // submit user contact information : 
+
+  const contactForm = document.getElementById('contact-form')
+  contactForm.addEventListener('submit', function(event) {
+   event.preventDefault();
+   const name = this.name.value
+   const email = this.name.email
+   const subject = this.name.subject
+   const message = this.name.message
+
+   console.log("test inputs :", name, email, subject, message)
+  //  btn.value = 'Sending...';
+
+  //  const serviceID = 'default_service';
+  //  const templateID = 'template_rudme3q';
+
+  //  emailjs.sendForm(serviceID, templateID, this)
+  //   .then(() => {
+  //     btn.value = 'Send Email';
+  //     alert('Sent!');
+  //   }, (err) => {
+  //     btn.value = 'Send Email';
+  //     alert(JSON.stringify(err));
+  //   });
+});
+
 })()
