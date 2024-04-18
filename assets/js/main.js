@@ -257,30 +257,53 @@
 
 
 
-  // submit user contact information : 
-
-  const contactForm = document.getElementById('contact-form')
-  contactForm.addEventListener('submit', function(event) {
-   event.preventDefault();
-   const name = this.name.value
-   const email = this.name.email
-   const subject = this.name.subject
-   const message = this.name.message
-
-   console.log("test inputs :", name, email, subject, message)
-  //  btn.value = 'Sending...';
-
-  //  const serviceID = 'default_service';
-  //  const templateID = 'template_rudme3q';
-
-  //  emailjs.sendForm(serviceID, templateID, this)
-  //   .then(() => {
-  //     btn.value = 'Send Email';
-  //     alert('Sent!');
-  //   }, (err) => {
-  //     btn.value = 'Send Email';
-  //     alert(JSON.stringify(err));
-  //   });
+  
+emailjs.init({
+  publicKey: "CM9Y9wDWg4DLF9rz9",
 });
 
+const resetForm = (form) => {
+  const name = form.from_name
+  const email = form.email_id
+  const subject = form.subject
+  const message = form.message
+
+  if (name.value && email.value && subject.value && message.value) {
+    name.value = ""
+    email.value = ""
+    subject.value = ""
+    message.value = ""
+  }
+}
+
+window.onload = function() {
+  const contactForm = document.getElementById('contact-form')
+  const sentMessage = document.querySelector(".sent-message")
+  const errorMessage = document.querySelector(".error-message")
+  contactForm.addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  const serviceID = 'default_service';
+  const templateID = 'template_rudme3q';
+
+  emailjs.sendForm(serviceID, templateID, this)
+    .then(() => {
+      console.log('SUCCESS!');
+      resetForm(this)
+      sentMessage.style.display = "block"
+      setTimeout(() => {
+      sentMessage.style.display = "none"
+      }, 3000);
+    }, (err) => {
+      errorMessage.textContent = "votre message n'a pas été envoyé"
+      errorMessage.style.display = "block"
+      setTimeout(() => {
+        errorMessage.style.display = "none"
+      }, 3000);
+    });
+  });
+}
+
 })()
+
+
