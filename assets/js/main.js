@@ -282,25 +282,26 @@ window.addEventListener("load", () => {
   const errorMessage = document.querySelector(".error-message")
   resetForm(contactForm)
   contactForm.addEventListener('submit', function(event) {
-  event.preventDefault();
-  const serviceID = 'default_service';
-  const templateID = 'template_rudme3q';
+    event.preventDefault();
+    const serviceID = 'default_service';
+    const templateID = 'template_rudme3q';
 
-  emailjs.sendForm(serviceID, templateID, this)
-    .then(() => {
-      console.log('SUCCESS!');
-      resetForm(this)
-      sentMessage.style.display = "block"
-      setTimeout(() => {
-      sentMessage.style.display = "none"
-      }, 3000);
-    }, (err) => {
-      errorMessage.textContent = "votre message n'a pas été envoyé"
-      errorMessage.style.display = "block"
-      setTimeout(() => {
-        errorMessage.style.display = "none"
-      }, 3000);
-    });
+    emailjs.sendForm(serviceID, templateID, this)
+      .then(() => {
+        console.log('SUCCESS!');
+        resetForm(this)
+        sentMessage.style.display = "block"
+        setTimeout(() => {
+        sentMessage.style.display = "none"
+        }, 3000);
+      }, (err) => {
+        errorMessage.textContent = "votre message n'a pas été envoyé"
+        errorMessage.style.display = "block"
+        setTimeout(() => {
+          errorMessage.style.display = "none"
+        }, 3000);
+
+      },);
   });
 })
 
