@@ -268,7 +268,7 @@ const resetForm = (form) => {
   const subject = form.subject
   const message = form.message
 
-  if (name.value && email.value && subject.value && message.value) {
+  if (name.value || email.value || subject.value || message.value) {
     name.value = ""
     email.value = ""
     subject.value = ""
@@ -276,13 +276,13 @@ const resetForm = (form) => {
   }
 }
 
-window.onload = function() {
+window.addEventListener("load", () => { 
   const contactForm = document.getElementById('contact-form')
   const sentMessage = document.querySelector(".sent-message")
   const errorMessage = document.querySelector(".error-message")
+  resetForm(contactForm)
   contactForm.addEventListener('submit', function(event) {
   event.preventDefault();
-
   const serviceID = 'default_service';
   const templateID = 'template_rudme3q';
 
@@ -302,7 +302,7 @@ window.onload = function() {
       }, 3000);
     });
   });
-}
+})
 
 })()
 
